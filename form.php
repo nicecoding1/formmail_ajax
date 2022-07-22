@@ -2,7 +2,7 @@
 # PHP 개발자 #
 이  름: 조재상
 이메일: oralol@naver.com
-블로그: http://oralol.blog.me
+블로그: https://blog.naver.com/oralol
 -->
 <html>
 <head>
@@ -71,6 +71,21 @@
 <td><textarea name="content" cols="70" rows="12" style="width:100%;"></textarea></td>
 </tr>
 </table>
+
+<!-- 개인정보 수집 및 활용 동의 -->
+<div>&nbsp;</div>
+<div>
+	<div class="bg-success p-2 text-white">[개인정보 수집 및 활용 동의]</div><br>
+	<div class="bg-success p-2 text-dark bg-opacity-25">
+		O 개인정보 수집 목적: OOO 서비스 이용<br>
+		O 개인정보 수집 항목(필수): 이름, 휴대폰번호, 거주 지역<br>
+		O 보유 및 이용기간: 서비스 이용 기간(상담 후 즉시 파기)<br>
+		O 동의를 거부할 권리가 있으며, 거부시 서비스 문의 불가함<br>&nbsp;<br>
+		<input type="radio" id="agreeyes" name="agree" value="yes"> 동의합니다. &nbsp;&nbsp;&nbsp;
+		<input type="radio" id="agreeno" name="agree" value="no"> 동의하지 않습니다.
+	</div>
+</div>
+
 <p align="center">
 <input type="button" id="submit" class="btn_red" value=" 전송 " onclick="form_Check();" style="cursor:hand;"> <span id="result"></span>
 </p>
@@ -130,8 +145,12 @@ function form_Check(){
 		form1.questype[0].focus();
 		return;
 	}
+	if(form1.agree[0].checked == false) {
+		alert("개인정보 수집 및 활용 동의를 하셔야 서비스 문의가 가능합니다.");
+		form1.agree[0].focus();
+		return;
+	}
 	if(!confirm('폼메일을 전송하겠습니까?')) return;
-	//form1.submit();
 
 	//Ajax 전송 시작
 	$('#submit').hide();
